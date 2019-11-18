@@ -1,5 +1,5 @@
-{
-  "1002": {
+[
+  {"id": "1006",
     "image": "http://www.winenara.com/shop/data/goods/1378111231147m0.jpg",
     "kor_name": "바롱 필립 까베르네 소비뇽",
     "price": { "winenara": 15000 },
@@ -15,7 +15,7 @@
     "taste": { "acid": 2, "body": 2 },
     "score": { "RP": 0, "CR": 0, "WS": 0, "WE": 0 }
   },
-  "1007": {
+  {"id": "1007",
     "image": "http://www.winenara.com/shop/data/goods/137887615530m0.jpg",
     "kor_name": "엠",
     "price": { "winenara": 20000 },
@@ -31,7 +31,7 @@
     "taste": { "acid": 4, "body": 1 },
     "score": { "RP": 0, "CR": 0, "WS": 0, "WE": 0 }
   },
-  "1008": {
+   {"id":"1008",
     "image": "http://www.winenara.com/shop/data/goods/1560394183585m0.jpg",
     "kor_name": "샤또 보네 레드",
     "price": { "winenara": 38000 },
@@ -47,7 +47,7 @@
     "taste": { "acid": 2, "body": 2 },
     "score": { "RP": 0, "CR": 0, "WS": 0, "WE": 0 }
   },
-  "1009": {
+  {"id": "1009",
     "image": "http://www.winenara.com/shop/data/goods/1560393995733m0.jpg",
     "kor_name": "샤또 보네 화이트",
     "price": { "winenara": 38000 },
@@ -63,7 +63,7 @@
     "taste": { "acid": 4, "body": 4 },
     "score": { "RP": 0, "CR": 0, "WS": 0, "WE": 0 }
   },
-  "1011": {
+  {"id": "1011",
     "image": "http://www.winenara.com/shop/data/goods/1535961391246m0.jpg",
     "kor_name": "무똥 까데 리저브 보르도 레드",
     "price": { "winenara": 50000 },
@@ -79,4 +79,4 @@
     "taste": { "acid": 2, "body": 5 },
     "score": { "RP": 0, "CR": 0, "WS": 0, "WE": 0 }
   }
-}
+]
