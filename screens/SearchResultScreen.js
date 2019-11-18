@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import Searchbar from "../components/Searchbar";
-import SearchListCard from "../components/SearchListCard"
+import SearchListCard from "../components/SearchListCard";
 
 import wineData from "../data/winenara.json";
 
@@ -24,7 +24,13 @@ const SearchResultScreen = props => {
 
   const renderListItem = itemData => {
     return (
-      <SearchListCard engName={itemData.item.eng_name}/>
+      <SearchListCard
+        engName={itemData.item.eng_name}
+        wineImage={itemData.item.image}
+        area={itemData.item.prod_area}
+        country={itemData.item.prod_country}
+        minPrice={itemData.item.price.winenara}
+      />
     );
   };
 
