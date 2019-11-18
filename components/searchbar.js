@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 
 import Icon from "react-native-vector-icons/Ionicons";
 import Colors from "../constants/Colors";
 
 const Searchbar = props => {
-  const [searchText, setSearchText] = useState(" ");
-
   return (
     <View style={styles.searchContainer}>
       <View style={styles.inputContainer}>
@@ -15,15 +13,24 @@ const Searchbar = props => {
         </View>
         <View style={styles.textInputContainer}>
           <TextInput
-            placeholder="Search"
-            onChangeText={() => {}}
-            value={searchText}
+            placeholder="Enter your wine name"
+            onChangeText={props.handler}
+            value={props.searchWine}
             style={styles.searchInput}
+            blurOnSubmit
+            autoCorrect={false}
+            underlineColorAndroid="transparent"
+            onSubmitEditing={props.onSelect}
           />
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="search" onPress={() => {}} />
+        <Button
+          title="search"
+          onPress={props.onSelect}
+          color="wine"
+          fontSize="50"
+        />
       </View>
     </View>
   );
@@ -31,32 +38,32 @@ const Searchbar = props => {
 
 const styles = StyleSheet.create({
   searchContainer: {
-    height: 75,
+    height: 55,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-around",
     backgroundColor: Colors.wineColor
   },
   inputContainer: {
-    width: "72%",
-    height: "50%",
+    width: "68%",
+    height: "72%",
     flexDirection: "row",
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 10,
     backgroundColor: "white"
   },
   iconContainer: {
-    flex: 1,
+    width: '20%',
     alignItems: "center",
     justifyContent: "center"
   },
   textInputContainer: {
-    flex: 7
+    width: '80%'
   },
   serachInput: {
     paddingTop: 0,
     paddingBottom: 0,
-    textAlignVertical: "center"
+    textAlignVertical: "center",
   },
   buttonContainer: {
     width: "18%"

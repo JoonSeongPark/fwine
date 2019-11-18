@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     height: "100%",
-    alignItems: "center"
+    alignItems: "center",
   },
   imageStyle: {
     height: "45%",
