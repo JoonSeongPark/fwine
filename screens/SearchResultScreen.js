@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
-  FlatList
+  FlatList,
+  Image
 } from "react-native";
 
 import Searchbar from "../components/Searchbar";
@@ -50,25 +51,24 @@ const SearchResultScreen = props => {
             });
           }}
         />
-
         <View style={styles.searchResultContainer}>
           <View style={styles.titleContainer}>
             <Text style={styles.titleTextStyle}>Result</Text>
+          </View>
+          <View>
+            <Text>{existingSearchText}</Text>
+            <Button
+              title="see the detail"
+              onPress={() => {
+                props.navigation.navigate({ routeName: "WineDetail" });
+              }}
+            />
           </View>
           <FlatList
             keyExtractor={(item, index) => item.id}
             data={wineData}
             renderItem={renderListItem}
-          />
-        </View>
-
-        <View>
-          <Text>{existingSearchText}</Text>
-          <Button
-            title="see the detail"
-            onPress={() => {
-              props.navigation.navigate({ routeName: "WineDetail" });
-            }}
+            contentContainerStyle={{paddingBottom: 150}}
           />
         </View>
       </View>
