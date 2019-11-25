@@ -13,19 +13,22 @@ import {
 const SearchListCard = props => {
   let TouchableCmp = TouchableOpacity;
 
-  if (Platform.OS === "android" && Platform.Version >= 21) {
-    TouchableCmp = TouchableNativeFeedback;
-  }
+  // if (Platform.OS === "android" && Platform.Version >= 21) {
+  //   TouchableCmp = TouchableNativeFeedback;
+  // }
   return (
     <View style={styles.wineCard}>
       <TouchableCmp style={{ flex: 1 }} onPress={props.onSelect}>
         <View style={styles.cardFrame}>
           <View style={styles.wineNameContainer}>
-            <Text style={styles.wineName}>{props.engName}</Text>
+            <Text style={styles.wineName} numberOfLines={1}>{props.engName}</Text>
           </View>
           <View style={styles.contents}>
             <View style={styles.imageContainer}>
-              <Image style={styles.wineImage} source={{uri: props.wineImage}}/>
+              <Image
+                style={styles.wineImage}
+                source={{ uri: props.wineImage }}
+              />
             </View>
             <View style={styles.wineInfo}>
               <Text>
@@ -45,9 +48,8 @@ const SearchListCard = props => {
 const styles = StyleSheet.create({
   wineCard: {
     height: 250,
-    marginHorizontal: 20,
-    marginVertical: 7,
-    padding: 15,
+    marginHorizontal: 25,
+    marginVertical: 15,
     elevation: 3,
     backgroundColor: "white",
     shadowColor: "black",
@@ -56,27 +58,39 @@ const styles = StyleSheet.create({
     // shadowOffset: { width: 0, height: 2 }
   },
   cardFrame: {
-    flex:1
+    flex: 1,
+    paddingHorizontal: 30,
+    paddingVertical: 15
   },
   wineNameContainer: {
-    height: "20%"
+    height: "15%",
+    justifyContent: "center",
+    borderBottomColor: 'rgba(0,0,0,0.3)',
+    borderBottomWidth: 1,
+    
   },
   wineName: {
     fontSize: 20,
     fontWeight: "bold"
   },
   contents: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center"
   },
   imageContainer: {
     width: "30%",
-    height: 50
+    height: "80%"
   },
-  wineImage: {},
+  wineImage: {
+    height: "100%",
+    width: "100%"
+  },
   wineInfo: {
     width: "70%",
-    height: 50
+    height: 50,
+    marginHorizontal: 25,
+    justifyContent: "space-around"
   }
 });
 

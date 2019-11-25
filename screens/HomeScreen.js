@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,8 +11,10 @@ import {
 
 import Searchbar from "../components/Searchbar";
 
+
 const HomeScreen = props => {
-  const [ searchText, setSearchText ] = useState('')
+  const [searchText, setSearchText] = useState("");
+
   const searchTextHandler = inputText => {
     setSearchText(inputText);
   };
@@ -31,24 +33,24 @@ const HomeScreen = props => {
             props.navigation.navigate({
               routeName: "WineSearchResult",
               params: { inputText: searchText }
-            });
+            })
+            setSearchText('');
           }}
         />
 
         <View style={styles.todayPickContainer}>
           <View style={styles.titleContainer}>
             <Text style={styles.titleTextStyle}>Today's picks</Text>
+            <View sytle={{ flex: 1, borderColor: 'black', borderWidth: 1, height: 300 }}></View>
           </View>
           <ScrollView />
         </View>
-
-        <View>
-          <Button
-            title="see the result"
-            onPress={() => {
-              props.navigation.navigate({ routeName: "WineSearchResult" });
-            }}
-          />
+        <View style={styles.todayPickContainer}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.titleTextStyle}>Just for you</Text>
+            <View sytle={{ borderWidth: 1, height: 300 }}></View>
+          </View>
+          <ScrollView />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -62,6 +64,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   todayPickContainer: {
+    height: 300,
     paddingVertical: 10
   },
   titleContainer: {

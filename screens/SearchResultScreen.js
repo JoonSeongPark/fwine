@@ -9,19 +9,29 @@ import {
   FlatList,
   Image
 } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import Searchbar from "../components/Searchbar";
 import SearchListCard from "../components/SearchListCard";
+import CustomHeaderButton from "../components/HeaderButton";
 
 import wineData from "../data/winenara.json";
 
 const SearchResultScreen = props => {
   const existingSearchText = props.navigation.getParam("inputText");
-
   const [searchText, setSearchText] = useState(existingSearchText);
   const searchTextHandler = inputText => {
     setSearchText(inputText);
   };
+
+  const lowerSearchText = existingSearchText.replace(/\s/gi, "").toLowerCase();
+
+  const searchFilter = wineName => {
+    lowerEngName = wineName.eng_name.replace(/\s/gi, "").toLowerCase();
+    return lowerEngName.indexOf(lowerSearchText) >= 0;
+  };
+
+  const searchedWine = wineData.filter(searchFilter);
 
   const renderListItem = itemData => {
     return (
@@ -31,6 +41,14 @@ const SearchResultScreen = props => {
         area={itemData.item.prod_area}
         country={itemData.item.prod_country}
         minPrice={itemData.item.price.winenara}
+        onSelect={() => {
+          props.navigation.navigate({
+            routeName: "WineDetail",
+            params: {
+              wineId: itemData.item.id
+            }
+          });
+        }}
       />
     );
   };
@@ -55,25 +73,32 @@ const SearchResultScreen = props => {
           <View style={styles.titleContainer}>
             <Text style={styles.titleTextStyle}>Result</Text>
           </View>
-          <View>
-            <Text>{existingSearchText}</Text>
-            <Button
-              title="see the detail"
-              onPress={() => {
-                props.navigation.navigate({ routeName: "WineDetail" });
-              }}
-            />
-          </View>
           <FlatList
             keyExtractor={(item, index) => item.id}
-            data={wineData}
+            data={searchedWine}
             renderItem={renderListItem}
-            contentContainerStyle={{paddingBottom: 150}}
+            contentContainerStyle={{ paddingBottom: 150 }}
           />
         </View>
       </View>
     </TouchableWithoutFeedback>
   );
+};
+
+SearchResultScreen.navigationOptions = navigationData => {
+  return {
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Home"
+          iconName="ios-home"
+          onPress={() => {
+            navigationData.navigation.popToTop();
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
 };
 
 const styles = StyleSheet.create({
