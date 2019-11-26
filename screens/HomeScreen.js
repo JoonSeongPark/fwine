@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import Searchbar from "../components/Searchbar";
-
+import wine21 from '../data/wine21_146483.json'
 
 const HomeScreen = props => {
   const [searchText, setSearchText] = useState("");

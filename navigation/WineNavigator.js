@@ -6,6 +6,7 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 
+import OpeningScreen from "../screens/OpeningScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import WineDetailScreen from "../screens/WineDetailScreen";
@@ -16,7 +17,9 @@ import CustomHeaderButton from "../components/HeaderButton"
 import Colors from "../constants/Colors";
 
 const WineNavigator = createStackNavigator(
-  {
+  { Opening: {
+    screen: OpeningScreen
+  },
     HomeInfo: {
       screen: HomeScreen,
       navigationOptions: {
