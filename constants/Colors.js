@@ -1,3 +1,3 @@
 export default {
-  wineColor: '#722f37'
+  wineColor: '#a31818'
 }
