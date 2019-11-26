@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
 import Colors from "../constants/Colors";
+import { fadeIn } from "react-navigation-transitions";
 
 const OpeningScreen = props => {
   useEffect(() => {
     setTimeout(() => {
       props.navigation.replace("HomeInfo");
-    }, 1000);
+    }, 1500);
   });
 
   return (
@@ -15,16 +16,16 @@ const OpeningScreen = props => {
       <View style={styles.logoContainer}>
         <Image
           style={styles.logoImage}
-          source={require("../assets/fwine_logo_white.png")}
+          source={require("../assets/logoName_white.png")}
         />
-        <Text style={styles.logoText}>fwine</Text>
       </View>
     </View>
   );
 };
 
 OpeningScreen.navigationOptions = {
-  headerTitle: null
+  headerTitle: null,
+  
 };
 
 const styles = StyleSheet.create({
@@ -40,17 +41,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: 100,
-    height: 30
+    height: 50
   },
   logoImage: {
     height: "100%",
-    width: 50,
     resizeMode: "contain"
   },
-  logoText: {
-    color: 'white',
-    fontSize: 25
-  }
 });
 
 export default OpeningScreen;
