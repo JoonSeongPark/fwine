@@ -14,8 +14,10 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import Searchbar from "../components/Searchbar";
 import SearchListCard from "../components/SearchListCard";
 import CustomHeaderButton from "../components/HeaderButton";
+import DefaultText from "../components/DefaultText";
 
-import wineData from "../data/winenara.json";
+import wineSample from "../data/wine_sample.json";
+import wineData from "../data/wine.json";
 
 const SearchResultScreen = props => {
   const existingSearchText = props.navigation.getParam("inputText");
@@ -26,21 +28,42 @@ const SearchResultScreen = props => {
 
   const lowerSearchText = existingSearchText.replace(/\s/gi, "").toLowerCase();
 
-  const searchFilter = wineName => {
-    lowerEngName = wineName.eng_name.replace(/\s/gi, "").toLowerCase();
-    return lowerEngName.indexOf(lowerSearchText) >= 0;
+  const searchFilter = wineNameList => {
+    lowerEngName = wineNameList.eng_name.replace(/\s/gi, "").toLowerCase();
+    lowerKorName = wineNameList.kor_name.replace(/\s/gi, "");
+    return (
+      lowerEngName.indexOf(lowerSearchText) >= 0 ||
+      lowerKorName.indexOf(lowerSearchText) >= 0
+    );
   };
 
   const searchedWine = wineData.filter(searchFilter);
-
+  
   const renderListItem = itemData => {
+    var i;
+    var priceList = new Array();
+    for (i = 0; i < itemData.item.price.length; i++) {
+      priceList.push(itemData.item.price[i][3]);
+    }
+    var min = Math.min.apply(null, priceList).toString();
+    var answer;
+    if (min.length < 4) {
+      answer = min;
+    } else if (min.length < 7) {
+      answer = min.slice(0, -3) + "," + min.slice(-3);
+    } else {
+      answer = min.slice(0, -6) + "," + min.slice(-6, -3) + "," + min.slice(-3);
+    }
     return (
       <SearchListCard
-        engName={itemData.item.eng_name}
         wineImage={itemData.item.image}
-        area={itemData.item.prod_area}
+        korName={itemData.item.kor_name}
+        engName={itemData.item.eng_name}
         country={itemData.item.prod_country}
-        minPrice={itemData.item.price.winenara}
+        company={itemData.item.prod_company}
+        wineColor={itemData.item.color}
+        score={itemData.item.score}
+        minPrice={answer}
         onSelect={() => {
           props.navigation.navigate({
             routeName: "WineDetail",
@@ -71,7 +94,7 @@ const SearchResultScreen = props => {
         />
         <View style={styles.searchResultContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleTextStyle}>Result</Text>
+            <DefaultText style={styles.titleTextStyle}>검색 결과</DefaultText>
           </View>
           <FlatList
             keyExtractor={(item, index) => item.id}
@@ -112,7 +135,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15
   },
   titleTextStyle: {
-    fontSize: 23,
+    fontSize: 17,
     fontWeight: "bold"
   }
 });

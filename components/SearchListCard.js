@@ -5,51 +5,91 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  Platform,
-  TouchableNativeFeedback,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from "react-native";
 
-const SearchListCard = props => {
-  let TouchableCmp = TouchableOpacity;
+import DefaultText from "../components/DefaultText";
+import WineImage from "../components/WineImage";
+import FlagImage from "../components/FlagImage";
+import Colors from "../constants/Colors";
 
-  // if (Platform.OS === "android" && Platform.Version >= 21) {
-  //   TouchableCmp = TouchableNativeFeedback;
-  // }
+const SearchListCard = props => {
   return (
     <View style={styles.wineCard}>
-      <TouchableCmp style={{ flex: 1 }} onPress={props.onSelect}>
-        <View style={styles.cardFrame}>
-          <View style={styles.wineNameContainer}>
-            <Text style={styles.wineName} numberOfLines={1}>{props.engName}</Text>
+      <View>
+        <View style={styles.upperPart}>
+          <View style={styles.imageContainer}>
+            <WineImage wineImage={props.wineImage} />
+            {/* <Image style={styles.wineImage} source={props.wineImage === null? (require('../assets/images/logoName_wine.png')):{ uri: props.wineImage }} /> */}
           </View>
-          <View style={styles.contents}>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.wineImage}
-                source={{ uri: props.wineImage }}
-              />
+          <View style={styles.textContainer}>
+            <DefaultText style={styles.korName}>{props.korName}</DefaultText>
+
+            <DefaultText style={styles.engName}>{props.engName}</DefaultText>
+
+            <View style={styles.countryPart}>
+              <FlagImage country={props.country} />
+              <DefaultText style={styles.countryName}>
+                {props.country} /
+              </DefaultText>
+              <DefaultText style={styles.companyName}>
+                {props.company}
+              </DefaultText>
             </View>
-            <View style={styles.wineInfo}>
-              <Text>
-                {props.area}, {props.country}
-              </Text>
-              <Text>WINE COLOR</Text>
-              <Text></Text>
-              <Text>{props.minPrice}원 (YEAR)</Text>
+            <View style={styles.wineColorContainer}>
+              <DefaultText style={styles.wineColor}>
+                {props.wineColor}
+              </DefaultText>
             </View>
           </View>
         </View>
-      </TouchableCmp>
+      </View>
+      <View style={{ flexDirection: "row", paddingHorizontal: 15 }}>
+        <View style={styles.lowerPartScore}>
+          <DefaultText style={styles.lowerTitle}>평점</DefaultText>
+          <View style={styles.scorePart}>
+            <Image
+              style={styles.starStyle}
+              source={require("../assets/images/FullStar.png")}
+            />
+            <Image
+              style={styles.starStyle}
+              source={require("../assets/images/FullStar.png")}
+            />
+            <Image
+              style={styles.starStyle}
+              source={require("../assets/images/FullStar.png")}
+            />
+            <Image
+              style={styles.starStyle}
+              source={require("../assets/images/FullStar.png")}
+            />
+            <Image
+              style={styles.starStyle}
+              source={require("../assets/images/FullStar.png")}
+            />
+            <DefaultText style={styles.wineScore}>{props.score} </DefaultText>
+            <DefaultText style={styles.maxScore}> / 5.0</DefaultText>
+          </View>
+        </View>
+        <View style={styles.lowerPartPrice}>
+          <DefaultText style={styles.lowerTitle}>최저가</DefaultText>
+          <View style={styles.pricePart}>
+            <DefaultText style={styles.minPriceText}>￦ {props.minPrice}</DefaultText>
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wineCard: {
-    height: 250,
-    marginHorizontal: 25,
-    marginVertical: 15,
+    height: Dimensions.get("window").height * 0.25,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+    marginVertical: 10,
     elevation: 3,
     backgroundColor: "white",
     shadowColor: "black",
@@ -57,40 +97,103 @@ const styles = StyleSheet.create({
     shadowRadius: 6
     // shadowOffset: { width: 0, height: 2 }
   },
-  cardFrame: {
-    flex: 1,
-    paddingHorizontal: 30,
-    paddingVertical: 15
-  },
-  wineNameContainer: {
-    height: "15%",
-    justifyContent: "center",
-    borderBottomColor: 'rgba(0,0,0,0.3)',
-    borderBottomWidth: 1,
-    
-  },
-  wineName: {
-    fontSize: 20,
-    fontWeight: "bold"
-  },
-  contents: {
-    flex: 1,
+  upperPart: {
     flexDirection: "row",
+    // height: Dimensions.get('window').height*0.175,
     alignItems: "center"
   },
   imageContainer: {
-    width: "30%",
-    height: "80%"
+    width: Dimensions.get("window").width * 0.3,
+    height: Dimensions.get("window").height * 0.18,
+    paddingVertical: 10,
+    // overflow: 'hidden',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
   },
-  wineImage: {
-    height: "100%",
-    width: "100%"
+  textContainer: {
+    paddingLeft: 10,
+    width: Dimensions.get("window").width * 0.6
   },
-  wineInfo: {
-    width: "70%",
-    height: 50,
-    marginHorizontal: 25,
-    justifyContent: "space-around"
+  korName: {
+    fontSize: 15,
+    fontWeight: "bold",
+    textAlignVertical: "center",
+    lineHeight: 22,
+    paddingVertical: 3
+  },
+  engName: {
+    fontSize: 12,
+    color: "gray",
+    textAlignVertical: "center",
+    lineHeight: 14
+  },
+  countryPart: {
+    paddingVertical: 5,
+    flexDirection: "row",
+    height: 25,
+    alignItems: "center"
+  },
+  countryName: {
+    paddingLeft: 6,
+    fontSize: 12
+  },
+  companyName: {
+    paddingLeft: 2,
+    color: "gray",
+    fontSize: 10
+  },
+  wineColorContainer: {
+    backgroundColor: "red",
+    alignSelf: "flex-start"
+  },
+  wineColor: {
+    color: "white"
+  },
+  lowerTitle: {
+    color: "gray",
+    fontSize: 14
+  },
+  lowerPartScore: {
+    paddingVertical: 10,
+    alignSelf: "flex-start"
+  },
+  scorePart: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    paddingTop: 5,
+    alignSelf: "flex-start"
+  },
+  starStyle: {
+    width: Dimensions.get("window").width * 0.04,
+    height: undefined,
+    resizeMode: "contain",
+    aspectRatio: 1 / 1
+  },
+  wineScore: {
+    fontSize: 16,
+    fontWeight: "bold",
+    paddingLeft: 10
+  },
+  maxScore: {
+    color: "gray",
+    fontSize: 12
+  },
+  lowerPartPrice: {
+    paddingVertical: 10,
+    paddingLeft: 15,
+    alignSelf: "flex-start"
+  },
+  pricePart: {
+    paddingTop: 5,
+    flexDirection: "row",
+    alignItems: "flex-end",
+    alignSelf: "flex-start",    
+  },
+  minPriceText:{
+    color: Colors.wineColor,
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 });
 
