@@ -12,7 +12,7 @@ const WineColor = props => {
     },
     {
       wineColorName: "화이트",
-      boxColor: "#F8FAA7"
+      boxColor: "#eccd13"
     },
     {
       wineColorName: "스파클링",
