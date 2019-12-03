@@ -9,9 +9,13 @@ import {
   Dimensions
 } from "react-native";
 
-import DefaultText from "../components/DefaultText";
-import WineImage from "../components/WineImage";
-import FlagImage from "../components/FlagImage";
+import DefaultText from "./DefaultText";
+import WineImage from "./WineImage";
+import FlagImage from "./FlagImage";
+import StarScore from "./StarScore";
+import MinPriceFunc from './MinPriceFunc'
+import WineColor from './WineColor'
+
 import Colors from "../constants/Colors";
 
 const SearchListCard = props => {
@@ -21,13 +25,10 @@ const SearchListCard = props => {
         <View style={styles.upperPart}>
           <View style={styles.imageContainer}>
             <WineImage wineImage={props.wineImage} />
-            {/* <Image style={styles.wineImage} source={props.wineImage === null? (require('../assets/images/logoName_wine.png')):{ uri: props.wineImage }} /> */}
           </View>
           <View style={styles.textContainer}>
             <DefaultText style={styles.korName}>{props.korName}</DefaultText>
-
             <DefaultText style={styles.engName}>{props.engName}</DefaultText>
-
             <View style={styles.countryPart}>
               <FlagImage country={props.country} />
               <DefaultText style={styles.countryName}>
@@ -37,47 +38,35 @@ const SearchListCard = props => {
                 {props.company}
               </DefaultText>
             </View>
-            <View style={styles.wineColorContainer}>
-              <DefaultText style={styles.wineColor}>
-                {props.wineColor}
+            <WineColor color={props.wineColor} />
+          </View>
+        </View>
+      </View>
+      <View style={styles.lowerPart}>
+        <View style={{flexDirection:'row',}}>
+          <View style={styles.lowerPartScore}>
+            <DefaultText style={styles.lowerTitle}>평점</DefaultText>
+            <View style={styles.scorePart}>
+              <StarScore score={props.score} />
+              <DefaultText style={styles.wineScore}>
+                {props.score.toFixed(1)}{" "}
+              </DefaultText>
+              <DefaultText style={styles.maxScore}> / 5.0</DefaultText>
+            </View>
+          </View>
+          <View style={styles.lowerPartPrice}>
+            <DefaultText style={styles.lowerTitle}>최저가</DefaultText>
+            <View style={styles.pricePart}>
+              <DefaultText style={styles.minPriceText}>
+                ￦ <MinPriceFunc price={props.priceList}/>
               </DefaultText>
             </View>
           </View>
         </View>
-      </View>
-      <View style={{ flexDirection: "row", paddingHorizontal: 15 }}>
-        <View style={styles.lowerPartScore}>
-          <DefaultText style={styles.lowerTitle}>평점</DefaultText>
-          <View style={styles.scorePart}>
-            <Image
-              style={styles.starStyle}
-              source={require("../assets/images/FullStar.png")}
-            />
-            <Image
-              style={styles.starStyle}
-              source={require("../assets/images/FullStar.png")}
-            />
-            <Image
-              style={styles.starStyle}
-              source={require("../assets/images/FullStar.png")}
-            />
-            <Image
-              style={styles.starStyle}
-              source={require("../assets/images/FullStar.png")}
-            />
-            <Image
-              style={styles.starStyle}
-              source={require("../assets/images/FullStar.png")}
-            />
-            <DefaultText style={styles.wineScore}>{props.score} </DefaultText>
-            <DefaultText style={styles.maxScore}> / 5.0</DefaultText>
-          </View>
-        </View>
-        <View style={styles.lowerPartPrice}>
-          <DefaultText style={styles.lowerTitle}>최저가</DefaultText>
-          <View style={styles.pricePart}>
-            <DefaultText style={styles.minPriceText}>￦ {props.minPrice}</DefaultText>
-          </View>
+        <View style={{justifyContent: 'center'}}>
+            <TouchableOpacity style={styles.goDetailButton} onPress={props.onSelect}>
+              <DefaultText style={styles.goDetailText}>상세보기 ></DefaultText>
+            </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -86,10 +75,10 @@ const SearchListCard = props => {
 
 const styles = StyleSheet.create({
   wineCard: {
-    height: Dimensions.get("window").height * 0.25,
+    // height: Dimensions.get("window").height * 0.25,
     paddingHorizontal: 10,
     paddingVertical: 7,
-    marginVertical: 10,
+    marginBottom: 6,
     elevation: 3,
     backgroundColor: "white",
     shadowColor: "black",
@@ -143,12 +132,11 @@ const styles = StyleSheet.create({
     color: "gray",
     fontSize: 10
   },
-  wineColorContainer: {
-    backgroundColor: "red",
-    alignSelf: "flex-start"
-  },
-  wineColor: {
-    color: "white"
+  lowerPart: {
+    flexDirection: "row",
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    height: Dimensions.get("window").height * 0.08
   },
   lowerTitle: {
     color: "gray",
@@ -163,12 +151,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     paddingTop: 5,
     alignSelf: "flex-start"
-  },
-  starStyle: {
-    width: Dimensions.get("window").width * 0.04,
-    height: undefined,
-    resizeMode: "contain",
-    aspectRatio: 1 / 1
   },
   wineScore: {
     fontSize: 16,
@@ -188,12 +170,26 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     flexDirection: "row",
     alignItems: "flex-end",
-    alignSelf: "flex-start",    
+    alignSelf: "flex-start"
   },
-  minPriceText:{
+  minPriceText: {
     color: Colors.wineColor,
-    fontSize: 16,
-    fontWeight: 'bold'
+    fontSize: 17,
+    fontWeight: "bold"
+  },
+  goDetailButton: {
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    backgroundColor: Colors.wineColor,
+    borderColor: Colors.wineColor,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 7,
+  },
+  goDetailText: {
+    fontSize: 13,
+    color: 'white',
+    fontWeight: '200'
   }
 });
 

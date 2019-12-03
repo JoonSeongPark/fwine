@@ -1,15 +1,15 @@
 import React from "react";
 import {
   View,
-  Text,
   Image,
   StyleSheet,
   TouchableOpacity,
-  ImageBackground,
   Dimensions
 } from "react-native";
 
 import DefaultText from "./DefaultText";
+import MinPriceFunc from './MinPriceFunc'
+
 import Colors from "../constants/Colors";
 
 const HorizontalCard = props => {
@@ -36,14 +36,14 @@ const HorizontalCard = props => {
         </View>
 
         <View style={styles.namePart}>
-          <DefaultText style={styles.korName}>{props.korName}</DefaultText>
+          <DefaultText style={styles.korName} >{props.korName}</DefaultText>
           <DefaultText style={styles.engName}>{props.engName}</DefaultText>
         </View>
       </View>
       <TouchableOpacity onPress={props.onSelect}>
         <View style={styles.buttonStyle}>
           <DefaultText style={styles.buttonText}>최저가:</DefaultText>
-          <DefaultText style={styles.buttonText}>{props.minPrice}원</DefaultText>
+          <DefaultText style={styles.buttonText}><MinPriceFunc price={props.priceList}/> 원</DefaultText>
         </View>
       </TouchableOpacity>
     </View>
@@ -109,9 +109,10 @@ const styles = StyleSheet.create({
     // height: 100,
   },
   korName: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: "bold",
-    lineHeight: 17
+    lineHeight: 17,
+    paddingBottom: 5
   },
   engName: {
     fontSize: 10,

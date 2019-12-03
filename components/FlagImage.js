@@ -62,7 +62,7 @@ const FlagImage = props => {
   ];
   const matchedCountry = countryFlagDict.find(name => name.countryName === props.country)
 
-  return <Image style={styles.flagImage} source={matchedCountry.flagLoc} />;
+  return <Image style={{...styles.flagImage, ...props.style}} source={matchedCountry.flagLoc} />;
 };
 
 const styles = StyleSheet.create({

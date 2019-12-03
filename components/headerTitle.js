@@ -7,7 +7,7 @@ const HeaderTitle = props => {
       <Text> </Text>
       <Image
         style={styles.imageStyle}
-        source={require("../assets/fwine_logo_white.png")}
+        source={require("../assets/images/logo_white.png")}
       />
       <Text style={styles.textStyle}>fwine</Text>
     </View>
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 22,
+    fontFamily:'vagrounded',
     color: "white"
   }
 });
