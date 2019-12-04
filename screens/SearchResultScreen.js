@@ -38,22 +38,9 @@ const SearchResultScreen = props => {
   };
 
   const searchedWine = wineData.filter(searchFilter);
-  
+
   const renderListItem = itemData => {
-    var i;
-    var priceList = new Array();
-    for (i = 0; i < itemData.item.price.length; i++) {
-      priceList.push(itemData.item.price[i][3]);
-    }
-    var min = Math.min.apply(null, priceList).toString();
-    var answer;
-    if (min.length < 4) {
-      answer = min;
-    } else if (min.length < 7) {
-      answer = min.slice(0, -3) + "," + min.slice(-3);
-    } else {
-      answer = min.slice(0, -6) + "," + min.slice(-6, -3) + "," + min.slice(-3);
-    }
+
     return (
       <SearchListCard
         wineImage={itemData.item.image}
@@ -63,12 +50,12 @@ const SearchResultScreen = props => {
         company={itemData.item.prod_company}
         wineColor={itemData.item.color}
         score={itemData.item.score}
-        minPrice={answer}
+        priceList={itemData.item.price}
         onSelect={() => {
           props.navigation.navigate({
             routeName: "WineDetail",
             params: {
-              wineId: itemData.item.id
+              wineId: itemData.item.item_id
             }
           });
         }}
@@ -129,10 +116,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
   searchResultContainer: {
-    paddingVertical: 10
+    backgroundColor: "#c0c0c0"
   },
   titleContainer: {
-    paddingHorizontal: 15
+    paddingVertical: 10,
+    backgroundColor: "white",
+    paddingHorizontal: 15,
+    borderBottomColor: "#c0c0c0",
+    borderBottomWidth: 1
   },
   titleTextStyle: {
     fontSize: 17,

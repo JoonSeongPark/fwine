@@ -9,34 +9,33 @@ import {
 
 import DefaultText from "./DefaultText";
 import MinPriceFunc from './MinPriceFunc'
+import WineColor from './WineColor'
 
 import Colors from "../constants/Colors";
+import WineImage from "./WineImage";
 
 const HorizontalCard = props => {
   return (
     <View style={styles.wineCard}>
       <View>
         <View style={styles.header}>
-          <View>
-            <Image
-              style={styles.headerImage}
-              source={require("../assets/images/logo_wine.png")}
-            />
-          </View>
           <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
-            <DefaultText style={styles.scoreText}>{props.score}</DefaultText>
             <Image
               style={styles.headerImage}
               source={require("../assets/images/FullStar.png")}
             />
+            <DefaultText style={styles.scoreText}>  {props.score.toFixed(1)}</DefaultText>
+          </View>
+          <View>
+            <WineColor color={props.wineColor}/>
           </View>
         </View>
         <View style={styles.imagePart}>
-          <Image style={styles.wineImage} source={{ uri: props.wineImage }} />
+          <WineImage wineImage={props.wineImage}/>
         </View>
 
         <View style={styles.namePart}>
-          <DefaultText style={styles.korName} >{props.korName}</DefaultText>
+          <DefaultText style={styles.korName}>{props.korName}</DefaultText>
           <DefaultText style={styles.engName}>{props.engName}</DefaultText>
         </View>
       </View>
@@ -53,7 +52,7 @@ const HorizontalCard = props => {
 const styles = StyleSheet.create({
   wineCard: {
     width: Dimensions.get("window").width * 0.4,
-    height: '90%',
+    height: Dimensions.get("window").height * 0.45,
     borderRadius: 20,
     overflow: "hidden",
     alignItems: "center",
@@ -61,15 +60,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 5,
     elevation: 3,
-    // borderColor: "black",
-    // borderWidth: 1,
     backgroundColor: "white"
-    // shadowColor: "black",
-    // shadowOpacity: 0.5,
-    // shadowRadius: 6,
-    // shadowOffset: { width: 0, height: 2 }
   },
   header: {
+    width: Dimensions.get("window").width * 0.4,
     height: 26,
     paddingTop: 10,
     paddingHorizontal: 10,
@@ -85,16 +79,17 @@ const styles = StyleSheet.create({
     resizeMode: "contain"
   },
   scoreText: {
-    // fontWeight: "bold",
-    fontSize: 13,
+    fontWeight: "200",
+    fontSize: 12,
     paddingRight: 5
   },
   imagePart: {
-    height: 180,
+    height: 160,
     paddingVertical: 20,
     // overflow: 'hidden',
     flexDirection: "row",
-    alignItems: 'flex-end'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   wineImage: {
     width: "100%",

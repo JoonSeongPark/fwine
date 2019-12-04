@@ -37,7 +37,7 @@ const WineNavigator = createStackNavigator(
       headerTitle: <HeaderTitle />,
       headerStyle: {
         elevation: 0,
-        backgroundColor: Platform.OS === "android" ? Colors.wineColor : ""
+        backgroundColor: Platform.OS === "android" ? Colors.wineColor : "",
       },
       headerTintColor: Platform.OS === "android" ? "white" : Colors.wineColor
     }

@@ -5,9 +5,11 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import DefaultText from "../DefaultText";
 
-import Colors from '../../constants/Colors'
+import Colors from "../../constants/Colors";
+import { Linking } from "expo";
 
 const DetailsPriceComparisonSection = props => {
+  // const a = {a: "Linking.openURL("+props.priceList[i][1]+")"}
   const priceListSorted = [];
   var i;
   priceListSorted.push(
@@ -74,13 +76,22 @@ const DetailsPriceComparisonSection = props => {
     }
     priceListSorted.push(
       <View style={styles.priceComparisonListContainer}>
-        <DefaultText style={{ ...styles.priceComparisonList, ...{fontSize: 14, fontWeight: '200'} }}>
+        <DefaultText
+          style={{
+            ...styles.priceComparisonList,
+            ...{ fontSize: 14, fontWeight: "200" }
+          }}
+        >
           {props.priceList[i][0]}
         </DefaultText>
-        <DefaultText style={{ ...styles.priceComparisonList, ...{fontSize: 12} }}>
+        <DefaultText
+          style={{ ...styles.priceComparisonList, ...{ fontSize: 12 } }}
+        >
           {vintage}
         </DefaultText>
-        <DefaultText style={{ ...styles.priceComparisonList, ...{fontSize: 12} }}>
+        <DefaultText
+          style={{ ...styles.priceComparisonList, ...{ fontSize: 12 } }}
+        >
           {commaPrice} 원
         </DefaultText>
         <View
@@ -97,16 +108,21 @@ const DetailsPriceComparisonSection = props => {
               paddingHorizontal: 3
             }}
           >
-            <Icon name="md-arrow-forward" size={22} color="white" />
+            <Icon
+              name="md-arrow-forward"
+              size={22}
+              color="white"
+              onPress={() => {
+                
+              }}
+            />
           </View>
         </View>
       </View>
     );
   }
 
-
   return (
-
     <View style={styles.priceComparisonPart}>
       <DefaultText style={styles.lowerTitle}>가격비교</DefaultText>
 

@@ -1,20 +1,13 @@
 import React from "react";
 
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions
-} from "react-native";
+import { View, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
 
 import DefaultText from "./DefaultText";
 import WineImage from "./WineImage";
 import FlagImage from "./FlagImage";
 import StarScore from "./StarScore";
-import MinPriceFunc from './MinPriceFunc'
-import WineColor from './WineColor'
+import MinPriceFunc from "./MinPriceFunc";
+import WineColor from "./WineColor";
 
 import Colors from "../constants/Colors";
 
@@ -43,7 +36,7 @@ const SearchListCard = props => {
         </View>
       </View>
       <View style={styles.lowerPart}>
-        <View style={{flexDirection:'row',}}>
+        <View style={{ flexDirection: "row" }}>
           <View style={styles.lowerPartScore}>
             <DefaultText style={styles.lowerTitle}>평점</DefaultText>
             <View style={styles.scorePart}>
@@ -58,15 +51,18 @@ const SearchListCard = props => {
             <DefaultText style={styles.lowerTitle}>최저가</DefaultText>
             <View style={styles.pricePart}>
               <DefaultText style={styles.minPriceText}>
-                ￦ <MinPriceFunc price={props.priceList}/>
+                ￦ <MinPriceFunc price={props.priceList} />
               </DefaultText>
             </View>
           </View>
         </View>
-        <View style={{justifyContent: 'center'}}>
-            <TouchableOpacity style={styles.goDetailButton} onPress={props.onSelect}>
-              <DefaultText style={styles.goDetailText}>상세보기 ></DefaultText>
-            </TouchableOpacity>
+        <View style={{ justifyContent: "center" }}>
+          <TouchableOpacity
+            style={styles.goDetailButton}
+            onPress={props.onSelect}
+          >
+            <DefaultText style={styles.goDetailText}>상세보기 ></DefaultText>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -134,7 +130,7 @@ const styles = StyleSheet.create({
   },
   lowerPart: {
     flexDirection: "row",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingHorizontal: 15,
     height: Dimensions.get("window").height * 0.08
   },
@@ -184,12 +180,12 @@ const styles = StyleSheet.create({
     borderColor: Colors.wineColor,
     borderWidth: 1,
     borderRadius: 10,
-    padding: 7,
+    padding: 7
   },
   goDetailText: {
     fontSize: 13,
-    color: 'white',
-    fontWeight: '200'
+    color: "white",
+    fontWeight: "200"
   }
 });
 

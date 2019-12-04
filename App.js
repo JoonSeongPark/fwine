@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { enableScreens } from "react-native-screens";
 
 import WineNavigator from "./navigation/WineNavigator";
+
+
 
 enableScreens;
 
@@ -28,6 +30,7 @@ export default function App() {
       />
     );
   }
+
 
   return <WineNavigator />;
 }

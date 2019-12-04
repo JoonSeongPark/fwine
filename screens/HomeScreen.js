@@ -7,55 +7,48 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
-import Carousel from "react-native-snap-carousel";
 
 import Searchbar from "../components/Searchbar";
-import HorizontalCard from "../components/HorizontalCard";
-import DefaultText from "../components/DefaultText";
 
-import wineSample from "../data/wine_sample.json";
+import HomeRecommendSection from "../components/sections/HomeRecommendSection";
+
+import TasteBased from "../components/TasteBased";
 
 const HomeScreen = props => {
+  const [wineTaste, setWineTaste] = useState([]);
+
+  async function A() {
+    try {
+      const response = await fetch("http://10.0.2.2:8000/recommend", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          type: "recommend_by_taste",
+          item_ids: "test"
+        })
+      });
+      console.log(await response.json());
+      setWineTaste(await response.json());
+      console.log(wineTaste);
+    } catch (err) {
+      console.log("fetch failed", err);
+    }
+  }
+
+  console.log(wineTaste.recommend);
+
+  var wineTasteBased = ["164714", "155951", "141339", "158985", "141323"];
+  var wineClickBased = ["139583", "139602", "139610", "138312", "138412"];
   const [searchText, setSearchText] = useState("");
 
   const searchTextHandler = inputText => {
     setSearchText(inputText);
-  };
-
-  const renderListItem = itemData => {
-    var i;
-    var priceList = new Array();
-    for (i = 0; i < itemData.item.price.length; i++) {
-      priceList.push(itemData.item.price[i][3]);
-    }
-    var min = Math.min.apply(null, priceList).toString();
-    var answer;
-    if (min.length < 4) {
-      answer = min;
-    } else if (min.length < 7) {
-      answer = min.slice(0, -3) + "," + min.slice(-3);
-    } else {
-      answer = min.slice(0, -6) + "," + min.slice(-6, -3) + "," + min.slice(-3);
-    }
-    return (
-      <HorizontalCard
-        wineImage={itemData.item.image}
-        engName={itemData.item.eng_name}
-        korName={itemData.item.kor_name}
-        score={itemData.item.score}
-        minPrice={answer}
-        onSelect={() => {
-          props.navigation.navigate({
-            routeName: "WineDetail",
-            params: {
-              wineId: itemData.item.item_id
-            }
-          });
-        }}
-      />
-    );
   };
 
   return (
@@ -69,46 +62,31 @@ const HomeScreen = props => {
           searchWine={searchText}
           handler={searchTextHandler}
           onSelect={() => {
-            props.navigation.navigate({
-              routeName: "WineSearchResult",
-              params: { inputText: searchText }
-            });
-            setSearchText("");
+            if (searchText === "") {
+              null;
+            } else {
+              props.navigation.navigate({
+                routeName: "WineSearchResult",
+                params: { inputText: searchText }
+              });
+              setSearchText("");
+            }
           }}
         />
         <ScrollView>
-          <View style={styles.todayPickContainer}>
-            <View style={styles.titleContainer}>
-              <DefaultText style={styles.titleTextStyle}>
-                오늘의 와인
-              </DefaultText>
-            </View>
-            <View style={{ alignItems: "center" }}>
-              <FlatList
-                keyExtractor={(item, index) => item.id}
-                data={wineSample}
-                renderItem={renderListItem}
-                style={styles.horizontalList}
-                horizontal={true}
-              />
-            </View>
-          </View>
-          <View style={styles.todayPickContainer}>
-            <View style={styles.titleContainer}>
-              <DefaultText style={styles.titleTextStyle}>
-                동엽님을 위한 맞춤형 추천
-              </DefaultText>
-            </View>
-            <View style={{ alignItems: "center" }}>
-              <FlatList
-                keyExtractor={(item, index) => item.id}
-                data={wineSample}
-                renderItem={renderListItem}
-                style={styles.horizontalList}
-                horizontal={true}
-              />
-            </View>
-          </View>
+          <HomeRecommendSection
+            recommendIds={wineTasteBased}
+            title="'아이유' 님을 위한 맞춤 추천"
+            navigation={props.navigation}
+          />
+          <HomeRecommendSection
+            recommendIds={wineClickBased}
+            title="최근에 본 상품과 유사한 와인"
+            navigation={props.navigation}
+          />
+
+          {/* <TasteBased navigation={this.props.navigation}/> */}
+  
         </ScrollView>
       </View>
     </TouchableWithoutFeedback>
@@ -121,24 +99,6 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1
     // backgroundColor: "#eaeaea"
-  },
-  todayPickContainer: {
-    height: Dimensions.get("window").height * 0.5,
-    // marginBottom: 10,
-    backgroundColor: "white"
-  },
-  titleContainer: {
-    paddingTop: 12,
-    paddingHorizontal: 15
-  },
-  titleTextStyle: {
-    fontSize: 17,
-    fontWeight: "100"
-  },
-  horizontalList: {
-    width: "100%",
-    paddingHorizontal: 10,
-    paddingVertical: 10
   }
 });
 
