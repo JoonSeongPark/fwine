@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b208592-0483-4012-8bab-7da7debf8965" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SearchListCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SearchListCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/searchbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/searchbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Colors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/WineNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/WineNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/OpeningScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/OpeningScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/WineDetailScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/WineDetailScreen.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,18 +17,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-359" />
-    <option name="y" value="22" />
+    <option name="x" value="82" />
+    <option name="y" value="88" />
     <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="height" value="864" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane" />
     </panes>
   </component>
@@ -65,7 +61,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-359" y="22" width="1400" height="1000" extended-state="0" />
+    <frame x="82" y="88" width="1400" height="864" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32966226" />

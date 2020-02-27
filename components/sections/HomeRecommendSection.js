@@ -59,7 +59,7 @@ const HomeRecommendSection = props => {
 
 const styles = StyleSheet.create({
   recommendListContainer: {
-    height: Dimensions.get("window").height * 0.53,
+    height: Dimensions.get("window").height * 0.5,
     // marginBottom: 10,
     backgroundColor: "white"
   },

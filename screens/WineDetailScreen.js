@@ -22,6 +22,7 @@ const WineDetailScreen = props => {
         wineColor={selectedWine.color}
         description={selectedWine.contents}
         relatedItemIds={selectedWine.related_item_ids}
+        navigation = {props.navigation}
       />
   );
 };

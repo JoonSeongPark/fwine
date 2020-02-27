@@ -52,7 +52,7 @@ const HorizontalCard = props => {
 const styles = StyleSheet.create({
   wineCard: {
     width: Dimensions.get("window").width * 0.4,
-    height: Dimensions.get("window").height * 0.45,
+    height: Dimensions.get("window").height * 0.4,
     borderRadius: 20,
     overflow: "hidden",
     alignItems: "center",

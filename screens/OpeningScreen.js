@@ -16,7 +16,7 @@ const OpeningScreen = props => {
       <View style={styles.logoContainer}>
         <Image
           style={styles.logoImage}
-          source={require("../assets/images/new_logoName_wine.png")}
+          source={require("../assets/images/new_logoName_white.png")}
         />
         <DefaultText style={styles.textTitle}>국내 모든 와인을 한눈에</DefaultText>
       </View>
@@ -28,7 +28,7 @@ OpeningScreen.navigationOptions = {
   headerTitle: null,
   headerStyle: {
     elevation: 0,
-    backgroundColor: 'white'
+    backgroundColor: Colors.wineColor
   },
 };
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     // backgroundColor: Colors.wineColor,
-    backgroundColor: 'white',
+    backgroundColor: Colors.wineColor,
     alignItems: "center",
     justifyContent: "center",
     paddingBottom: 50
@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
     resizeMode: "contain"
   },
   textTitle: {
-    fontSize: 18,
-    fontWeight: '300',
-    color: 'black'
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white'
   }
 });
 

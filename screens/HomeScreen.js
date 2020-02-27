@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
-  Text,
-  FlatList,
   ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
-  Dimensions,
-  TouchableOpacity
 } from "react-native";
 
 import Searchbar from "../components/Searchbar";
 
 import HomeRecommendSection from "../components/sections/HomeRecommendSection";
+import ClickRecommendSection from "../components/sections/ClickRecommendSection";
 
 import TasteBased from "../components/TasteBased";
 
@@ -33,15 +30,13 @@ const HomeScreen = props => {
           item_ids: "test"
         })
       });
-      console.log(await response.json());
       setWineTaste(await response.json());
-      console.log(wineTaste);
+    
     } catch (err) {
       console.log("fetch failed", err);
     }
   }
 
-  console.log(wineTaste.recommend);
 
   var wineTasteBased = ["164714", "155951", "141339", "158985", "141323"];
   var wineClickBased = ["139583", "139602", "139610", "138312", "138412"];
@@ -76,10 +71,10 @@ const HomeScreen = props => {
         <ScrollView>
           <HomeRecommendSection
             recommendIds={wineTasteBased}
-            title="'아이유' 님을 위한 맞춤 추천"
+            title="'OOO' 님을 위한 맞춤 추천"
             navigation={props.navigation}
           />
-          <HomeRecommendSection
+          <ClickRecommendSection
             recommendIds={wineClickBased}
             title="최근에 본 상품과 유사한 와인"
             navigation={props.navigation}
