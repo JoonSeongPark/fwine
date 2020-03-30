@@ -38,8 +38,8 @@ const HomeScreen = props => {
   }
 
 
-  var wineTasteBased = ["164714", "155951", "141339", "158985", "141323"];
-  var wineClickBased = ["139583", "139602", "139610", "138312", "138412"];
+  var wineTasteBased = ["154226", "139055", "139617", "141089", "143810"]
+  var wineClickBased = ["139583", "139623", "139610", "138312", "138412"];
   const [searchText, setSearchText] = useState("");
 
   const searchTextHandler = inputText => {
